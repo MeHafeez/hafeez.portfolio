@@ -27,11 +27,11 @@ export default function RootLayout({
               description: metadata.description,
               image: metadata.openGraph?.images[0].url,
               sameAs: [
-                "https://twitter.com/zakeer579",
-                "https://github.com/zakeer",
-                "https://linkedin.com/in/zakeer579",
+                // "https://twitter.com/zakeer579",
+                "https://github.com/MeHafeez",
+                "https://www.linkedin.com/in/shaik-hafeez-16a26321b/",
               ],
-              url: "https://zakeer.me",
+              url: "https://hafeezsh.vercel.app/",
               worksFor: {
                 "@type": "Organization",
                 name: "Evergent Techonologies pvt lmt",

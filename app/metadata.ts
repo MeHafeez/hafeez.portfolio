@@ -5,11 +5,11 @@ const siteConfig = {
   description:
     "Portfolio of Hafeez Shaik, a  Software Engineer specializing in fullstack Development and Front-End Engineer with 3.5 years of experience.",
   url: "https://zakeer.me",
-  ogImage: "https://zakeer.me/syed-zakeer-hussain.webp",
+  ogImage: "../public/profile.png",
   links: {
-    twitter: "https://twitter.com/zakeer579",
-    github: "https://github.com/zakeer",
-    linkedin: "https://linkedin.com/in/zakeer579",
+    // twitter: "https://twitter.com/zakeer579",
+    github: "https://github.com/MeHafeez",
+    linkedin: "https://www.linkedin.com/in/shaik-hafeez-16a26321b/",
   },
 }
 
@@ -55,16 +55,16 @@ export const metadata = {
       },
     ],
   },
-  twitter: {
-    card: "summary_large_image",
-    title: {
-      default: `${siteConfig.name} - ${siteConfig.title}`,
-      template: `%s | ${siteConfig.name}`,
-    },
-    description: siteConfig.description,
-    images: [siteConfig.ogImage],
-    creator: "@zakeer579",
-  },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   title: {
+  //     default: `${siteConfig.name} - ${siteConfig.title}`,
+  //     template: `%s | ${siteConfig.name}`,
+  //   },
+  //   description: siteConfig.description,
+  //   images: [siteConfig.ogImage],
+  //   creator: "@zakeer579",
+  // },
   robots: {
     index: true,
     follow: true,
