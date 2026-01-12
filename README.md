@@ -1,8 +1,8 @@
-# Syed Zakeer Hussain - Portfolio
+# =Shaik Hafeez's - Portfolio
 
 ## Overview
 
-This is the personal portfolio website of Syed Zakeer Hussain, a Staff Software Engineer specializing in Frontend Development and UI Architecture. The portfolio showcases Syed's professional experience, skills, projects, and contact information.
+This is the personal portfolio website of Hafeez Shaik, a Software Engineer and a full stack developer. The portfolio showcases shaik's professional experience, skills, projects, and contact information.
 
 ## Features
 
