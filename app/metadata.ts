@@ -1,13 +1,12 @@
 
 const siteConfig = {
   name: "Hafeez Shaik",
-  title: "Software Engineer / Full-Stack Developer",
+  title: "Software Engineer · Full-Stack Developer · Lead Frontend",
   description:
-    "Portfolio of Hafeez Shaik, a  Software Engineer specializing in fullstack Development and Front-End Engineer with 3.5 years of experience.",
-  url: "https://zakeer.me",
-  ogImage: "../public/profile.png",
+    "Portfolio of Hafeez Shaik — Full-Stack Engineer (MERN) with 4+ years shipping production-grade web applications. Currently Lead Frontend at Barbarian, delivering scalable solutions for AbbVie, Citizen Watch and more.",
+  url: "https://hafeezsh.vercel.app",
+  ogImage: "/profile.jpg",
   links: {
-    // twitter: "https://twitter.com/zakeer579",
     github: "https://github.com/MeHafeez",
     linkedin: "https://www.linkedin.com/in/shaik-hafeez-16a26321b/",
   },
@@ -15,35 +14,33 @@ const siteConfig = {
 
 export const metadata = {
   title: {
-    default: `${siteConfig.name} - ${siteConfig.title}`,
+    default: `${siteConfig.name} — ${siteConfig.title}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
   keywords: [
-    "Frontend Engineer",
-    "React",
-    "Redux",
-    "TypeScript",
-    "JavaScript",
+    "Hafeez Shaik",
+    "Full-Stack Developer",
+    "Lead Frontend Developer",
     "Software Engineer",
-    "Web Development",
+    "MERN Developer",
+    "React Developer",
+    "Next.js Developer",
+    "TypeScript",
+    "Node.js",
+    "MongoDB",
+    "AbbVie",
+    "Citizen Watch",
+    "Hyderabad Developer",
   ],
-  authors: [
-    {
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
-  ],
+  authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
   metadataBase: new URL(siteConfig.url),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteConfig.url,
-    title: {
-      default: `${siteConfig.name} - ${siteConfig.title}`,
-      template: `%s | ${siteConfig.name}`,
-    },
+    title: `${siteConfig.name} — ${siteConfig.title}`,
     description: siteConfig.description,
     siteName: siteConfig.name,
     images: [
@@ -51,20 +48,16 @@ export const metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} - ${siteConfig.title}`,
+        alt: `${siteConfig.name} — ${siteConfig.title}`,
       },
     ],
   },
-  // twitter: {
-  //   card: "summary_large_image",
-  //   title: {
-  //     default: `${siteConfig.name} - ${siteConfig.title}`,
-  //     template: `%s | ${siteConfig.name}`,
-  //   },
-  //   description: siteConfig.description,
-  //   images: [siteConfig.ogImage],
-  //   creator: "@zakeer579",
-  // },
+  twitter: {
+    card: "summary_large_image",
+    title: `${siteConfig.name} — ${siteConfig.title}`,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
+  },
   robots: {
     index: true,
     follow: true,
@@ -76,14 +69,9 @@ export const metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-site-verification-code",
-    yandex: "your-yandex-verification-code",
-  },
   alternates: {
     canonical: siteConfig.url,
   },
 }
 
 export default siteConfig
-

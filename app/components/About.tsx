@@ -1,63 +1,116 @@
 "use client"
 
 import { motion } from "framer-motion"
+import {
+  Code2,
+  Rocket,
+  Users,
+  Zap,
+  Database,
+  ShieldCheck,
+} from "lucide-react"
+
+const cards = [
+  {
+    icon: Code2,
+    title: "Full-Stack Ownership",
+    desc:
+      "End-to-end ownership across React, Next.js, Node.js and MongoDB — from REST API design to shipping production UIs.",
+  },
+  {
+    icon: Rocket,
+    title: "Performance Obsessed",
+    desc:
+      "Profiling, rendering optimization and Core Web Vitals — I restructure codebases to be fast, lean and maintainable.",
+  },
+  {
+    icon: Users,
+    title: "Team Leadership",
+    desc:
+      "Currently leading a team of 4+ developers, driving code quality, timely delivery and Agile best practices.",
+  },
+  {
+    icon: Zap,
+    title: "Scalable Architecture",
+    desc:
+      "Refactored large legacy frontends into modular, scalable architectures — improving maintainability and velocity.",
+  },
+  {
+    icon: Database,
+    title: "Data & APIs",
+    desc:
+      "REST APIs, MongoDB aggregations (lookup, $group, $set), SQL → Mongo conversions and event-driven flows.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Security & DevOps",
+    desc:
+      "JWT auth, middleware, API encryption, CI/CD on AWS, Cloudflare, Netlify, Vercel and Render.",
+  },
+]
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08 } },
+}
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+}
 
 export default function About() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  }
-
   return (
-    <section id="about" className="section-padding elegant-border">
+    <section id="about" className="section-padding elegant-border relative">
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
       <div className="container mx-auto container-padding">
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-3xl text-center"
         >
-          <motion.h2 variants={itemVariants} className="section-title">
-            About Me
-          </motion.h2>
-          <motion.div variants={itemVariants} className="max-w-3xl mx-auto space-y-6 text-lg">
-            <p>
-              As a Technology and Innovation Enthusiast, I excel in both startup environments and large-scale
-              enterprises, bringing dynamic creativity and a proactive &apos;can-do&apos; attitude to every project.
-            </p>
-            <p>
-            With over 3 years of experience as a Full-Stack Developer, I specialize in building scalable, 
-            high-performance web applications using React, JavaScript, TypeScript, Node.js, and MongoDB.
-             My expertise extends to modern development tools and technologies, including Webpack and Babel, 
-             enabling me to optimize application performance and streamline development workflows.
-            </p>
-            <p>
-            I am passionate about creating clean, maintainable code and delivering intuitive user experiences through robust UI architectures and seamless backend integrations. 
-            Beyond coding, I actively contribute to team growth, mentor peers, and drive best practices to ensure the delivery of high-quality, production-ready solutions.
-            </p>
-            <p>
-            Always eager to learn and innovate, I stay updated with the latest industry trends to build cutting-edge applications that make a real impact.
-            </p>
-          </motion.div>
+          <div className="section-eyebrow">About</div>
+          <h2 className="section-title">
+            Building products that <span className="gradient-text">scale</span> & delight
+          </h2>
+          <p className="section-subtitle">
+            Full-Stack Developer (MERN) with 4+ years delivering production-grade web applications.
+            I thrive in both startups and large enterprises — bringing dynamic creativity, a
+            proactive &apos;can-do&apos; attitude, and a relentless focus on quality.
+          </p>
+        </motion.div>
+
+        <motion.div
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+        >
+          {cards.map((c) => (
+            <motion.div
+              key={c.title}
+              variants={item}
+              whileHover={{ y: -4 }}
+              className="group card-surface p-6 transition-colors hover:border-primary/40"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[hsl(var(--brand-1)/0.15)] to-[hsl(var(--brand-2)/0.15)] border border-border/60">
+                  <c.icon className="h-5 w-5 text-primary" />
+                </div>
+                <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                  Strength
+                </span>
+              </div>
+              <h3 className="mt-5 text-lg font-semibold">{c.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{c.desc}</p>
+
+              <div className="mt-6 h-px w-full bg-gradient-to-r from-transparent via-border to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>
   )
 }
-
