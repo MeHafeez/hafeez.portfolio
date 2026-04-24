@@ -111,35 +111,39 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur"
+              className="flex flex-wrap items-center gap-2"
             >
-              <span className="relative flex size-2">
-                <span className="absolute inset-0 animate-ping rounded-full bg-emerald-500 opacity-75" />
-                <span className="relative rounded-full size-2 bg-emerald-500" />
+              <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/60 px-3 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur">
+                <span className="relative flex size-2">
+                  <span className="absolute inset-0 animate-ping rounded-full bg-emerald-500 opacity-75" />
+                  <span className="relative rounded-full size-2 bg-emerald-500" />
+                </span>
+                Open to SDE-2 / Frontend Developer / Backend Developer & Full-Stack roles
               </span>
-              Available for Senior / Lead Frontend & Full-Stack roles
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary backdrop-blur">
+                Full-Stack Developer (MERN)
+              </span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.05 }}
-              className="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.02]"
+              className="mt-5 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-[-0.03em] leading-[1.02]"
             >
-              Hi, I&apos;m{" "}
-              <span className="gradient-text">Hafeez Shaik</span>.
+              <span className="gradient-text">Hafeez Shaik</span>
               <br />
-              <span className="text-foreground/90">I build </span>
+              <span className="text-foreground/90">I ship </span>
               <TypeAnimation
                 sequence={[
-                  "scalable web apps.",
-                  2000,
+                  "scalable MERN apps.",
+                  2200,
                   "high-performance UIs.",
-                  2000,
+                  2200,
                   "production-grade systems.",
-                  2000,
-                  "delightful experiences.",
-                  2000,
+                  2200,
+                  "zero-downtime migrations.",
+                  2200,
                 ]}
                 wrapper="span"
                 speed={55}
@@ -154,13 +158,23 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.15 }}
               className="mt-6 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed"
             >
-              Full-Stack Engineer with{" "}
+              {/* Full-Stack Engineer with{" "}
               <span className="text-foreground font-semibold">4+ years</span> delivering
               production-grade MERN and Next.js applications. Currently leading frontend at{" "}
               <span className="text-foreground font-semibold">Barbarian</span> for clients like{" "}
               <span className="text-foreground font-semibold">AbbVie</span> and{" "}
-              <span className="text-foreground font-semibold">Citizen Watch</span> — shipping
-              scalable architectures, owning migrations, and mentoring teams.
+              <span className="text-foreground font-semibold">Citizen Watch</span>  shipping
+              scalable architectures, owning migrations, and mentoring teams. */}
+
+              <span className="text-foreground font-semibold">Full-Stack Developer</span> with{" "}
+              <span className="text-foreground font-semibold">4+ years</span> building scalable,
+              high-performance applications on{" "}
+              <span className="text-foreground font-semibold">React, Next.js, Node.js, TypeScript, & MongoDB</span>.
+              Currently <span className="text-foreground font-semibold">Full stack developer @ Barbarian</span>{" "}
+              leading a team of 4, owning end-to-end delivery and a multi-app{" "}
+              <span className="text-foreground font-semibold">Netlify → Cloudflare</span> migration
+              for <span className="text-foreground font-semibold">AbbVie</span> &{" "}
+              <span className="text-foreground font-semibold">Lead the frontend part for Citizen Watch</span>.
             </motion.p>
 
             <motion.div
@@ -224,11 +238,12 @@ export default function Hero() {
                 hidden: {},
                 show: { transition: { staggerChildren: 0.08, delayChildren: 0.5 } },
               }}
-              className="mt-10 grid grid-cols-3 gap-4 max-w-lg"
+              className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl"
             >
               {[
-                { v: "4+", l: "Years Exp." },
-                { v: "10+", l: "Projects Shipped" },
+                { v: "4+", l: "Years in MERN" },
+                { v: "5+", l: "Apps Migrated" },
+                { v: "4", l: "Devs Led" },
                 { v: "1st", l: "AI Hackathon" },
               ].map((s) => (
                 <motion.div

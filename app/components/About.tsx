@@ -15,37 +15,37 @@ const cards = [
     icon: Code2,
     title: "Full-Stack Ownership",
     desc:
-      "End-to-end ownership across React, Next.js, Node.js and MongoDB — from REST API design to shipping production UIs.",
+      "Own features end-to-end across React, Next.js, Node.js and MongoDB — from API design and data modeling to the shipped UI.",
   },
   {
     icon: Rocket,
-    title: "Performance Obsessed",
+    title: "Performance Engineering",
     desc:
-      "Profiling, rendering optimization and Core Web Vitals — I restructure codebases to be fast, lean and maintainable.",
+      "Profile, restructure rendering paths and enforce per-route bundle budgets — Core Web Vitals as a contract, not an afterthought.",
   },
   {
     icon: Users,
     title: "Team Leadership",
     desc:
-      "Currently leading a team of 4+ developers, driving code quality, timely delivery and Agile best practices.",
+      "Lead a team of 4 engineers — code reviews, pairing, RFCs and unblockers so every sprint ships production-ready work.",
   },
   {
     icon: Zap,
     title: "Scalable Architecture",
     desc:
-      "Refactored large legacy frontends into modular, scalable architectures — improving maintainability and velocity.",
+      "Refactor large legacy frontends into modular, typed architectures with clear feature boundaries — shrinking time-to-add-a-feature.",
   },
   {
     icon: Database,
     title: "Data & APIs",
     desc:
-      "REST APIs, MongoDB aggregations (lookup, $group, $set), SQL → Mongo conversions and event-driven flows.",
+      "REST API design, MongoDB aggregations ($lookup, $group, $set), SQL → Mongo migrations and role-based access at the API boundary.",
   },
   {
     icon: ShieldCheck,
-    title: "Security & DevOps",
+    title: "Cloud & DevOps",
     desc:
-      "JWT auth, middleware, API encryption, CI/CD on AWS, Cloudflare, Netlify, Vercel and Render.",
+      "Owned a Netlify → Cloudflare migration. Comfortable with AWS, Vercel, Render, CI/CD pipelines, JWT auth and API encryption.",
   },
 ]
 
@@ -72,12 +72,10 @@ export default function About() {
         >
           <div className="section-eyebrow">About</div>
           <h2 className="section-title">
-            Building products that <span className="gradient-text">scale</span> & delight
+            Engineering <span className="gradient-text">scale, speed</span> & ownership
           </h2>
           <p className="section-subtitle">
-            Full-Stack Developer (MERN) with 4+ years delivering production-grade web applications.
-            I thrive in both startups and large enterprises — bringing dynamic creativity, a
-            proactive &apos;can-do&apos; attitude, and a relentless focus on quality.
+            Six strengths I bring to every product team — from architecture to delivery.
           </p>
         </motion.div>
 

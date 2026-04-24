@@ -54,7 +54,7 @@ export const projects: Project[] = [
     tagline:
       "Owning the end-to-end frontend for a heritage watch brand — shipping production-ready features with a performance-first mindset.",
     description:
-      "Led end-to-end frontend development for Citizen Watch: owned codebase structure, shipped production-ready features and optimized rendering performance across the experience.",
+      "Problem: a fast-growing global storefront codebase with inconsistent patterns and rendering regressions. Built a clear feature-folder architecture, shared UI primitives and typed data contracts, and led 4 engineers in shipping production-ready features. Improved rendering performance, eliminated hydration waterfalls and raised release confidence with a hardened PR → preview → prod pipeline.",
     role: "Lead Frontend Developer",
     year: "2025",
     period: "Aug 2025 — Present",
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     tagline:
       "Led the cross-stack migration of multiple production apps to Cloudflare, improving deployment reliability and edge performance.",
     description:
-      "Led migration of multiple applications (Next.js, React, Angular, JS/TS) from Netlify to Cloudflare — improving deployment reliability, edge performance and DX for a team of 4.",
+      "Problem: AbbVie's portfolio of Next.js, React, Angular and JS/TS apps had fragmented Netlify pipelines and inconsistent deploys. Built a per-framework migration playbook, dual-deployed every app for parity, and unified CI/CD on Cloudflare. Improved deployment reliability, sped up TTFB via edge caching and shipped DNS cutovers with zero production downtime — leading a team of 4 through the rollout.",
     role: "Lead Migration Engineer",
     year: "2025",
     period: "2025",
@@ -206,7 +206,7 @@ export const projects: Project[] = [
     tagline:
       "Designed and shipped core CMS modules end-to-end — from MongoDB aggregations to role-based permissions and dynamic file handling.",
     description:
-      "Designed and built core CMS modules end-to-end. Implemented REST APIs, advanced MongoDB aggregations ($set, $group, $lookup), role-based permissions and dynamic file handling.",
+      "Problem: legacy SQL-based CMS logic couldn't scale, and complex permissions blocked module velocity. Built core CMS modules end-to-end on React + Node + MongoDB — REST APIs, advanced aggregations ($lookup, $group, $set), role-based access control and dynamic file handling for images, videos & PDFs. Improved query performance by migrating SQL → MongoDB, hardened security with RBAC, and shipped multiple modules in a fast Agile cadence.",
     role: "Full-Stack Web Developer",
     year: "2023 — 2024",
     period: "Jul 2023 — Aug 2024",
@@ -297,7 +297,7 @@ export const projects: Project[] = [
     tagline:
       "Expanded Astro's dealer portal into the Canadian market with Google Maps, PDF generation and broadband onboarding.",
     description:
-      "Following the success of Astro NJoy, Astro entrusted us with Astro Canada. Replicated the dealer portal and added Google Maps, PDF generation and broadband service onboarding.",
+      "Problem: Astro needed to launch its dealer portal in Canada with new regional flows — accurate address capture, signed onboarding artifacts and broadband services. Built Google Maps-assisted address pinning, an EJS-powered 5-step onboarding with downloadable PDF artifacts, and a broadband onboarding flow alongside existing services. Improved data accuracy at registration and hardened transport security with Java-API encryption.",
     role: "React Developer",
     year: "2023",
     period: "2023",
@@ -372,7 +372,7 @@ export const projects: Project[] = [
     tagline:
       "Built the original Astro dealer portal — a reusable UI system, Java API integrations, OTP-secured flows and Redux-backed state.",
     description:
-      "Designed and developed the Astro NJoy dealer portal for onboarding users and managing customer support — reusable components, Java API integrations, OTP verification and Redux-backed state.",
+      "Problem: Astro's dealer operations needed a unified portal for onboarding, data capture and customer support — backed by Java APIs and secure password flows. Built a reusable React UI system, integrated Java APIs end-to-end, wired Redux for resilient client state, and shipped an OTP-verified password change flow. Improved consistency across multiple dealer pages and secured sensitive transport with API encryption.",
     role: "Frontend Developer",
     year: "2022 — 2023",
     period: "2022 — 2023",
