@@ -17,14 +17,18 @@ type ExperienceItem = {
 const experiences: ExperienceItem[] = [
   {
     company: "Barbarian",
-    position: "Software Engineer · Lead Frontend Developer",
+    position: "Software Engineer",
     period: "Aug 2025 — Present",
     location: "Hyderabad, India",
-    clients: ["AbbVie", "Citizen Watch"],
+    clients: ["Samsung", "AbbVie", "Citizen Watch"],
     current: true,
     description:
-      "Delivering scalable, high-performance frontend and full-stack solutions for global clients. Leading end-to-end frontend ownership, large migrations and a team of developers in fast-paced environments.",
+      "Currently a Software Engineer on the Samsung account. Delivering scalable frontend and full-stack solutions for global clients, and driving internal agentic-AI tooling initiatives.",
     achievements: [
+      "Working as a Software Engineer for client Samsung.",
+      "Built a Figma → AEM Edge Delivery Services code-generation pipeline driven by Claude Code and the Figma Dev Mode MCP server — eliminating manual design-to-code translation.",
+      "Designed a 4-stage agentic pipeline (global styles → blocks → pages → JCR content migration) that produced 14+ reusable EDS blocks with Universal Editor models.",
+      "Implemented a Node.js content-migration engine deploying FileVault JCR packages via the AEM Package Manager and AEMaaCS Direct Binary Upload APIs.",
       "Led migration of multiple applications (Next.js, React, Angular, JS/TS) from Netlify to Cloudflare for AbbVie — improving deployment reliability and performance.",
       "Served as Lead Frontend Developer for Citizen Watch, owning end-to-end frontend development and shipping production-ready features.",
       "Led a team of 4 developers, ensuring timely delivery, code quality and efficient collaboration.",
@@ -69,7 +73,7 @@ export default function Experience() {
             Experience <span className="gradient-text">timeline</span>
           </h2>
           <p className="section-subtitle">
-            4+ years of shipping production software across startups and enterprise clients.
+            5+ years of shipping production software across startups and enterprise clients.
           </p>
         </motion.div>
 

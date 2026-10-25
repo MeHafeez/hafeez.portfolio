@@ -48,6 +48,96 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: "figma-to-eds",
+    title: "Figma → AEM EDS — Agentic Code-Gen Pipeline",
+    subtitle: "AI Tooling @ Barbarian",
+    tagline:
+      "An AI-agent-driven pipeline (Claude Code + Figma Dev Mode MCP) that turns a single Figma link into production-ready Adobe Edge Delivery Services code and content.",
+    description:
+      "Problem: every AEM Edge Delivery Services build started with manual design-to-code translation — re-reading Figma, hand-writing tokens, CSS/JS and Universal Editor models, then authoring pages by hand. Built an agentic pipeline on Claude Code + the Figma Dev Mode MCP server that reads live design files and runs 4 stages autonomously (global styles → blocks → pages → JCR content migration). Produced 14+ reusable EDS blocks, deployed content straight into Universal Editor via the AEM Package Manager & Direct Binary Upload APIs, and eliminated manual design-to-code translation.",
+    role: "Pipeline Architect & Engineer",
+    year: "2026",
+    period: "2026",
+    client: "Internal · Barbarian",
+    company: "Barbarian",
+    location: "Hyderabad, India (Remote)",
+    featured: true,
+    accent: "from-fuchsia-500/30 via-purple-500/20 to-cyan-500/20",
+    technologies: ["Claude Code", "Figma MCP", "AEM EDS", "Universal Editor", "Node.js", "Vanilla JS/CSS"],
+    overview: [
+      "Every Adobe Edge Delivery Services (EDS) build used to start the same way: a developer re-reads the Figma file, hand-extracts tokens, writes block CSS/JS, authors Universal Editor component models and then manually populates pages in AEM. Slow, repetitive and error-prone.",
+      "I built an AI-agent-driven code-generation pipeline on Claude Code and the Figma Dev Mode MCP server that reads live design files and emits production-ready EDS artifacts — design tokens, CSS, JS and Universal Editor content models — removing manual design-to-code translation entirely.",
+      "It runs as an agentic workflow: from a single Figma link the agent executes the full extraction-to-output pipeline, then deploys the content straight into AEM so pages open pre-populated in Universal Editor.",
+    ],
+    challenges: [
+      "Manual design-to-code translation for every EDS block — tokens, CSS, JS and component models written by hand from Figma.",
+      "Content had to be authored page by page in AEM after the code shipped.",
+      "Universal Editor models, the block registry and lint state drifted out of sync as blocks were added.",
+      "Re-running generation after a design change risked overwriting blocks that hadn't changed.",
+      "An AI agent needs deterministic guardrails — not just prompts — to produce production-grade output.",
+    ],
+    approach: [
+      {
+        title: "4-stage generation pipeline",
+        desc:
+          "Global stylesheet → component blocks → full pages → JCR content migration. Each stage feeds the next, producing reusable blocks like carousel, tabs, accordion, hero and multi-column forms.",
+      },
+      {
+        title: "Agentic workflow design",
+        desc:
+          "Authored slash commands (/generate-block, /content-migration, /global-styles), spec/prompt files and CLAUDE.md router instructions so the agent runs the whole pipeline autonomously from one Figma link.",
+      },
+      {
+        title: "Content-migration engine",
+        desc:
+          "A Node.js engine that generates Adobe FileVault JCR packages and deploys them via the AEM Package Manager HTTP API and the AEMaaCS 3-step Direct Binary Upload API.",
+      },
+      {
+        title: "Dependency-free packager",
+        desc:
+          "Wrote the ZIP/FileVault packager from scratch — raw DEFLATE plus a manual CRC-32 — with no third-party archive libraries.",
+      },
+      {
+        title: "Idempotent re-runs",
+        desc:
+          "Field-value hashing against a manifest detects what changed, so re-runs regenerate only the blocks that actually moved.",
+      },
+      {
+        title: "Two-repo architecture",
+        desc:
+          "Generator tool vs. deployable EDS site, with glob-based auto-registration (merge-json-cli), a deterministic verifier and Husky pre-commit hooks keeping the block registry, models and lint state in sync.",
+      },
+    ],
+    contributions: [
+      "Built a Figma → AEM EDS code-generation pipeline driven by Claude Code and the Figma Dev Mode MCP server that reads live design files and emits production-ready EDS artifacts.",
+      "Designed the 4-stage pipeline that produced 14+ reusable EDS blocks, each with hand-authored vanilla CSS/JS and a Universal Editor JSON model.",
+      "Engineered it as an agentic workflow — slash commands, spec/prompt files and CLAUDE.md router instruction sets — so the agent runs end-to-end from a single Figma link.",
+      "Implemented a Node.js content-migration engine that packages JCR content and deploys it via the AEM Package Manager and AEMaaCS Direct Binary Upload APIs, pre-populating pages in Universal Editor.",
+      "Wrote a dependency-free ZIP/FileVault packager (raw DEFLATE + manual CRC-32) plus an idempotent update-detection layer so re-runs regenerate only changed blocks.",
+      "Architected a two-repo model with auto-registration, a deterministic verifier and Husky pre-commit hooks keeping the block registry, component models and lint state in sync.",
+    ],
+    stack: [
+      { group: "AI & Agents", items: ["Claude Code", "Figma Dev Mode MCP", "Slash Commands", "CLAUDE.md Routers"] },
+      { group: "Adobe", items: ["AEM Edge Delivery Services", "Universal Editor", "aem-boilerplate-xwalk", "JCR / FileVault"] },
+      { group: "Engine", items: ["Node.js", "AEM Package Manager API", "AEMaaCS Direct Binary Upload", "DEFLATE + CRC-32"] },
+      { group: "Output", items: ["Design Tokens", "Vanilla CSS / JS", "UE JSON Models"] },
+      { group: "Quality", items: ["merge-json-cli", "Deterministic Verifier", "Husky", "ESLint / Stylelint"] },
+    ],
+    impact: [
+      { label: "Blocks", value: "14+", note: "Reusable EDS blocks generated" },
+      { label: "Pipeline", value: "4 stages", note: "Styles → blocks → pages → content" },
+      { label: "Input", value: "1 link", note: "Agent runs from a single Figma URL" },
+      { label: "Hand-coding", value: "Eliminated", note: "No manual design-to-code step" },
+    ],
+    timeline: [
+      { phase: "Extract", desc: "Figma Dev Mode MCP reads the live design — tokens, layout and component structure." },
+      { phase: "Global styles", desc: "Generates the global stylesheet and design tokens as CSS custom properties." },
+      { phase: "Blocks", desc: "Emits reusable EDS blocks with vanilla CSS/JS and a Universal Editor JSON model each." },
+      { phase: "Pages", desc: "Composes full pages from the generated blocks." },
+      { phase: "Content migration", desc: "Packages JCR content and deploys it to AEM so pages open pre-populated in Universal Editor." },
+    ],
+  },
+  {
     slug: "citizen-watch",
     title: "Citizen Watch — Global Site",
     subtitle: "Lead Frontend @ Barbarian",
@@ -564,7 +654,7 @@ export const projects: Project[] = [
       },
       {
         src: "/case-studies/webgenius-ai/pitch.jpg",
-        caption: "Leading the pitch",
+        caption: "Certificate & prize",
         hint: "Drop a presentation photo at /public/case-studies/webgenius-ai/pitch.jpg",
       },
     ],

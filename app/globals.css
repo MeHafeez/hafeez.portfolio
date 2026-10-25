@@ -29,6 +29,14 @@
     --brand-2: 262 83% 58%;
     --brand-3: 199 89% 48%;
     --grid-color: 220 13% 91%;
+
+    /* Categorical data-viz slots (skill map). Order is CVD-validated, incl. 6 → 1 wrap. */
+    --viz-1: #2a78d6;
+    --viz-2: #eb6834;
+    --viz-3: #1baf7a;
+    --viz-4: #eda100;
+    --viz-5: #e87ba4;
+    --viz-6: #008300;
   }
 
   .dark {
@@ -56,6 +64,13 @@
     --brand-2: 263 70% 65%;
     --brand-3: 199 89% 48%;
     --grid-color: 215 27% 14%;
+
+    --viz-1: #3987e5;
+    --viz-2: #d95926;
+    --viz-3: #199e70;
+    --viz-4: #c98500;
+    --viz-5: #d55181;
+    --viz-6: #008300;
   }
 }
 

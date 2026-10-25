@@ -1,18 +1,23 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 import {
-  GraduationCap,
-  Trophy,
-  Sparkles,
-  Target,
   ArrowUpRight,
+  Bot,
+  Building2,
+  GraduationCap,
   HeartHandshake,
   Mic,
+  Sparkles,
+  Target,
+  Trophy,
   Users,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
+import { getProjectBySlug, type Project } from "@/app/data/projects"
 
 const education = [
   {
@@ -29,79 +34,155 @@ const education = [
   },
 ]
 
-type Highlight = {
+type Milestone = {
   icon: LucideIcon
   title: string
   desc: string
-  color: string
-  accentIcon?: string
   href?: string
-  cta?: string
-  bullets?: string[]
-  featured?: boolean
+  now?: boolean
 }
 
-const highlights: Highlight[] = [
+const milestones: Milestone[] = [
   {
-    icon: Trophy,
-    title: "1st Place — Internal AI Hackathon",
-    desc:
-      "Led team CodeStormers to 1st place at Evergent's internal hackathon — built WebGenius-AI, an AI-powered test automation platform combining LLMs + Computer Vision.",
-    color: "from-amber-500/25 to-orange-500/15",
-    accentIcon: "text-amber-500",
-    href: "/case-studies/webgenius-ai",
-    cta: "Read case study",
-    bullets: [
-      "Team Lead · built most of the core logic & code",
-      "Led the pitch in front of the jury",
-      "Guided the team toward a shared technical vision",
-    ],
-    featured: true,
+    icon: Building2,
+    title: "Software Engineer — Samsung",
+    desc: "Currently a Software Engineer on the Samsung account at Barbarian.",
+    now: true,
   },
   {
-    icon: HeartHandshake,
-    title: "Beyond Code — Culture & Activities @ Evergent",
-    desc:
-      "I'm not just a developer. At Evergent I invested deeply in culture — organizing Fun Fridays, serving on multiple committees and co-hosting the Evergent Premier League.",
-    color: "from-violet-500/25 to-indigo-500/15",
-    accentIcon: "text-violet-500",
-    href: "/case-studies/evergent-culture",
-    cta: "Read case study",
-    bullets: [
-      "Organized multiple successful Fun Friday events that brought teams together",
-      "Member of the Sports Committee, Fun Committee and Cricket Committee",
-      "Co-hosted EPL (Evergent Premier League) 2024 & 2025 — plus live commentary",
-    ],
-    featured: true,
+    icon: Bot,
+    title: "Figma → AEM EDS Pipeline",
+    desc: "Built an agentic Claude Code + Figma MCP pipeline that generated 14+ reusable EDS blocks.",
+    href: "/case-studies/figma-to-eds",
   },
   {
     icon: Sparkles,
-    title: "Lead Frontend Developer — Citizen Watch",
-    desc: "Serving as Lead Frontend for Citizen Watch at Barbarian — owning end-to-end delivery of production features and leading a team of 4.",
-    color: "from-sky-500/25 to-blue-500/15",
-    accentIcon: "text-sky-500",
+    title: "Lead Frontend — Citizen Watch",
+    desc: "Owned end-to-end delivery of production features and led a team of 4.",
     href: "/case-studies/citizen-watch",
-    cta: "Read case study",
   },
   {
     icon: Target,
     title: "Cross-Framework Migrations — AbbVie",
-    desc: "Led migration of Next.js, React, Angular and JS/TS apps from Netlify to Cloudflare — improving deployment reliability and edge performance.",
-    color: "from-fuchsia-500/25 to-rose-500/15",
-    accentIcon: "text-fuchsia-500",
+    desc: "Moved Next.js, React, Angular and JS/TS apps from Netlify to Cloudflare.",
     href: "/case-studies/abbvie-migration",
-    cta: "Read case study",
   },
 ]
 
-const extraRoles = [
+const hats = [
   { icon: Users, label: "Sports Committee" },
   { icon: Users, label: "Fun Committee" },
   { icon: Users, label: "Cricket Committee" },
   { icon: Mic, label: "EPL Live Commentary" },
 ]
 
+type Photo = { src: string; caption: string }
+
+// Hero image first, then the rest of the case-study gallery
+function photosOf(project: Project | undefined): Photo[] {
+  if (!project) return []
+  const hero = project.heroImage
+    ? [{ src: project.heroImage.src, caption: project.heroImage.caption ?? project.title }]
+    : []
+  const rest = (project.gallery ?? [])
+    .filter((g): g is typeof g & { src: string } => !!g.src && g.src !== hero[0]?.src)
+    .map((g) => ({ src: g.src, caption: g.caption }))
+  return [...hero, ...rest]
+}
+
+function PhotoSwitcher({
+  photos,
+  badge,
+  className = "aspect-[16/10]",
+}: {
+  photos: Photo[]
+  badge: React.ReactNode
+  className?: string
+}) {
+  const [index, setIndex] = useState(0)
+  const photo = photos[index]
+  if (!photo) return null
+
+  return (
+    <div className={`relative overflow-hidden bg-secondary ${className}`}>
+      <AnimatePresence initial={false}>
+        <motion.div
+          key={photo.src}
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.45 }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={photo.src}
+            alt={photo.caption}
+            fill
+            sizes="(max-width: 1024px) 100vw, 640px"
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            style={{ objectPosition: "center 45%" }}
+          />
+        </motion.div>
+      </AnimatePresence>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+
+      <div className="absolute left-4 top-4">{badge}</div>
+
+      <div className="absolute inset-x-4 bottom-4 flex items-end justify-between gap-3">
+        <span className="min-w-0 truncate text-xs font-medium text-white/90">{photo.caption}</span>
+        <div className="flex shrink-0 gap-1.5">
+          {photos.map((p, i) => (
+            <button
+              key={p.src}
+              type="button"
+              aria-label={`Show photo: ${p.caption}`}
+              aria-pressed={i === index}
+              onClick={() => setIndex(i)}
+              onMouseEnter={() => setIndex(i)}
+              className={`relative size-9 overflow-hidden rounded-lg border-2 transition sm:size-10 ${
+                i === index ? "border-white" : "border-white/30 opacity-70 hover:opacity-100"
+              }`}
+            >
+              <Image src={p.src} alt="" fill sizes="40px" className="object-cover" />
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function Badge({ icon: Icon, children }: { icon: LucideIcon; children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-neutral-900 shadow-lg backdrop-blur">
+      <Icon className="h-3.5 w-3.5" />
+      {children}
+    </span>
+  )
+}
+
+function CaseStudyLink({ href }: { href: string }) {
+  return (
+    <Link
+      href={href}
+      className="mt-5 inline-flex w-fit items-center gap-1.5 rounded-full border border-border/70 bg-background/80 px-3.5 py-1.5 text-xs font-semibold text-foreground backdrop-blur transition hover:border-primary/40 hover:bg-background"
+    >
+      Read case study
+      <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+    </Link>
+  )
+}
+
+const reveal = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.15 },
+}
+
 export default function Education() {
+  const hackathon = photosOf(getProjectBySlug("webgenius-ai"))
+  const culture = photosOf(getProjectBySlug("evergent-culture"))
+
   return (
     <section id="education" className="section-padding elegant-border relative">
       <div className="container mx-auto container-padding">
@@ -122,115 +203,151 @@ export default function Education() {
           </p>
         </motion.div>
 
-        <div className="mt-14 grid lg:grid-cols-5 gap-5">
-          {/* Education */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+        {/* Achievements with photos */}
+        <div className="mt-14 grid gap-5 lg:grid-cols-12">
+          <motion.article
+            {...reveal}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2 card-surface p-6 md:p-8 h-fit lg:sticky lg:top-24"
+            className="group flex min-w-0 flex-col overflow-hidden card-surface lg:col-span-7"
+          >
+            <PhotoSwitcher photos={hackathon} badge={<Badge icon={Trophy}>1st Place</Badge>} />
+            <div className="flex flex-1 flex-col p-6 md:p-7">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-amber-600 dark:text-amber-400">
+                Internal AI Hackathon · Evergent
+              </div>
+              <h3 className="mt-2 text-xl font-semibold">WebGenius-AI — Team CodeStormers</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Led the team to 1st place with an AI-powered test automation platform combining
+                LLMs and Computer Vision.
+              </p>
+              <ul className="mt-4 grid gap-2 sm:grid-cols-3">
+                {[
+                  "Team Lead — built most of the core logic",
+                  "Led the pitch in front of the jury",
+                  "Guided a shared technical vision",
+                ].map((b) => (
+                  <li
+                    key={b}
+                    className="rounded-xl border border-border/60 bg-background/60 px-3 py-2.5 text-xs leading-snug text-foreground/85"
+                  >
+                    {b}
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-auto">
+                <CaseStudyLink href="/case-studies/webgenius-ai" />
+              </div>
+            </div>
+          </motion.article>
+
+          <motion.article
+            {...reveal}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className="group flex min-w-0 flex-col overflow-hidden card-surface lg:col-span-5"
+          >
+            {/* Taller frame on lg so this narrower card lines up with the hackathon card */}
+            <PhotoSwitcher
+              photos={culture}
+              badge={<Badge icon={HeartHandshake}>Beyond code</Badge>}
+              className="aspect-[16/10] lg:aspect-[10/9]"
+            />
+            <div className="flex flex-1 flex-col p-6 md:p-7">
+              <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-violet-600 dark:text-violet-400">
+                Culture & Community · Evergent
+              </div>
+              <h3 className="mt-2 text-xl font-semibold">Fun Fridays, committees & EPL</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Organized Fun Fridays and co-hosted the Evergent Premier League in 2024 & 2025 —
+                including live commentary.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {hats.map((h) => (
+                  <span key={h.label} className="chip !px-2.5 text-[11px]">
+                    <h.icon className="h-3 w-3" />
+                    {h.label}
+                  </span>
+                ))}
+              </div>
+              <div className="mt-auto">
+                <CaseStudyLink href="/case-studies/evergent-culture" />
+              </div>
+            </div>
+          </motion.article>
+        </div>
+
+        {/* Education + milestones */}
+        <div className="mt-5 grid gap-5 lg:grid-cols-12">
+          <motion.div
+            {...reveal}
+            transition={{ duration: 0.6 }}
+            className="min-w-0 card-surface p-6 md:p-7 lg:col-span-5"
           >
             <div className="flex items-center gap-3">
-              <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-[hsl(var(--brand-1)/0.2)] to-[hsl(var(--brand-2)/0.15)] border border-border/60">
+              <div className="flex size-10 items-center justify-center rounded-xl border border-border/60 bg-gradient-to-br from-[hsl(var(--brand-1)/0.2)] to-[hsl(var(--brand-2)/0.15)]">
                 <GraduationCap className="h-5 w-5 text-primary" />
               </div>
               <h3 className="text-lg font-semibold">Education</h3>
             </div>
 
-            <div className="mt-6 space-y-5">
-              {education.map((e, i) => (
-                <div key={e.school} className="relative pl-5">
-                  <span className="absolute left-0 top-2 size-2 rounded-full bg-primary" />
-                  {i !== education.length - 1 && (
-                    <span className="absolute left-[3px] top-5 bottom-[-20px] w-px bg-border" />
-                  )}
-                  <div className="text-xs text-muted-foreground">
-                    {e.period} · {e.location}
-                  </div>
-                  <div className="mt-0.5 font-semibold">{e.school}</div>
-                  <div className="text-sm text-muted-foreground">{e.degree}</div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8 pt-6 border-t border-border/60">
-              <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
-                Also wore the hats of
-              </div>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {extraRoles.map((r) => (
-                  <span
-                    key={r.label}
-                    className="inline-flex items-center gap-1.5 text-xs rounded-md border border-border/60 bg-background/50 px-2 py-1 text-foreground/80"
-                  >
-                    <r.icon className="h-3 w-3" />
-                    {r.label}
+            <ol className="relative mt-6 space-y-4 before:absolute before:bottom-3 before:left-[7px] before:top-3 before:w-px before:bg-border">
+              {education.map((e) => (
+                <li key={e.school} className="relative pl-8">
+                  <span className="absolute left-0 top-1.5 flex size-[15px] items-center justify-center rounded-full border-2 border-primary bg-background">
+                    <span className="size-1.5 rounded-full bg-primary" />
                   </span>
-                ))}
-              </div>
-            </div>
+                  <div className="rounded-xl border border-border/60 bg-background/60 p-4 transition hover:border-primary/40">
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                      <div className="font-semibold">{e.school}</div>
+                      <div className="text-xs font-medium text-primary">{e.period}</div>
+                    </div>
+                    <div className="mt-1 text-sm text-muted-foreground">{e.degree}</div>
+                    <div className="mt-0.5 text-xs text-muted-foreground/80">{e.location}</div>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </motion.div>
 
-          {/* Highlights */}
-          <div className="lg:col-span-3 grid grid-cols-1 gap-4">
-            {highlights.map((h, i) => (
-              <motion.div
-                key={h.title}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                whileHover={{ y: -3 }}
-                className="relative card-surface overflow-hidden group"
-              >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${h.color} opacity-60 group-hover:opacity-90 transition-opacity`}
-                />
-                <div className="relative p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-background/80 backdrop-blur border border-border/60 shadow-sm">
-                      <h.icon className={`h-5 w-5 ${h.accentIcon ?? "text-primary"}`} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-3">
-                        <h3 className="text-base md:text-lg font-semibold">{h.title}</h3>
-                        {h.featured && (
-                          <span className="chip shrink-0 text-[10px] !px-2 !py-0.5">
-                            Featured
-                          </span>
-                        )}
+          <motion.div
+            {...reveal}
+            transition={{ duration: 0.6, delay: 0.08 }}
+            className="min-w-0 lg:col-span-7"
+          >
+            <div className="grid h-full gap-4 sm:grid-cols-2">
+              {milestones.map((m) => {
+                const body = (
+                  <>
+                    <div className="flex items-center justify-between">
+                      <div className="flex size-10 items-center justify-center rounded-xl border border-border/60 bg-background/80">
+                        <m.icon className="h-5 w-5 text-primary" />
                       </div>
-                      <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
-                        {h.desc}
-                      </p>
-
-                      {h.bullets && (
-                        <ul className="mt-4 space-y-1.5">
-                          {h.bullets.map((b) => (
-                            <li key={b} className="flex gap-2 text-xs md:text-sm text-foreground/85">
-                              <span className="mt-1.5 size-1 rounded-full bg-primary shrink-0" />
-                              <span>{b}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-
-                      {h.href && (
-                        <Link
-                          href={h.href}
-                          className="mt-5 inline-flex items-center gap-1.5 rounded-full border border-border/70 bg-background/80 backdrop-blur px-3.5 py-1.5 text-xs font-semibold text-foreground hover:border-primary/40 hover:bg-background transition"
-                        >
-                          {h.cta ?? "Read case study"}
-                          <ArrowUpRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                        </Link>
+                      {m.now ? (
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
+                          <span className="size-1.5 animate-pulse rounded-full bg-emerald-500" />
+                          Now
+                        </span>
+                      ) : (
+                        <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-primary" />
                       )}
                     </div>
+                    <h3 className="mt-4 font-semibold leading-snug">{m.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{m.desc}</p>
+                  </>
+                )
+                const cls =
+                  "group block h-full card-surface p-5 transition hover:-translate-y-0.5 hover:border-primary/40"
+                return m.href ? (
+                  <Link key={m.title} href={m.href} className={cls}>
+                    {body}
+                  </Link>
+                ) : (
+                  <div key={m.title} className={cls}>
+                    {body}
                   </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                )
+              })}
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>

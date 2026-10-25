@@ -29,7 +29,7 @@ export default function Footer() {
             <span className="gradient-text">Hafeez Shaik</span>
           </h2>
           <p className="max-w-xl text-sm text-muted-foreground">
-            Software Engineer & Full-Stack Developer crafting production-grade experiences.
+            Software Engineer, Full-Stack Developer & Prompt Engineer crafting production-grade experiences.
             Open to senior and lead opportunities.
           </p>
 

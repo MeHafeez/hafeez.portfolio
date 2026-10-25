@@ -49,6 +49,16 @@ function MagneticButton({
   )
 }
 
+// Alternate sides top to bottom, stopping above the "Currently" label at the photo's bottom-left.
+// A badge without a dot is the featured one (sparkle icon + primary ring).
+const floatingBadges = [
+  { label: "Prompt Engineer", pos: "-left-6 top-[7%]", float: -10, duration: 6 },
+  { label: "React · Next.js", dot: "bg-sky-500", pos: "-right-6 top-[20%]", float: 10, duration: 7 },
+  { label: "LLMs · Gen AI", dot: "bg-fuchsia-500", pos: "-left-8 top-[40%]", float: -8, duration: 5.5 },
+  { label: "Node · MongoDB", dot: "bg-emerald-500", pos: "-right-4 top-[56%]", float: 8, duration: 6.5 },
+  { label: "Claude Code · MCP", dot: "bg-violet-500", pos: "-left-4 top-[70%]", float: -6, duration: 7.5 },
+]
+
 export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
   const mx = useMotionValue(0)
@@ -118,10 +128,14 @@ export default function Hero() {
                   <span className="absolute inset-0 animate-ping rounded-full bg-emerald-500 opacity-75" />
                   <span className="relative rounded-full size-2 bg-emerald-500" />
                 </span>
-                Open to SDE-2 / Frontend Developer / Backend Developer & Full-Stack roles
+                Open to SDE-2 / Frontend Developer / Backend Developer / Full-Stack & Prompt Engineer roles
               </span>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary backdrop-blur">
                 Full-Stack Developer (MERN)
+              </span>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-semibold text-primary backdrop-blur">
+                <Sparkles className="h-3 w-3" />
+                Prompt Engineer
               </span>
             </motion.div>
 
@@ -143,6 +157,8 @@ export default function Hero() {
                   "production-grade systems.",
                   2200,
                   "zero-downtime migrations.",
+                  2200,
+                  "agentic AI pipelines.",
                   2200,
                 ]}
                 wrapper="span"
@@ -167,14 +183,16 @@ export default function Hero() {
               scalable architectures, owning migrations, and mentoring teams. */}
 
               <span className="text-foreground font-semibold">Full-Stack Developer</span> with{" "}
-              <span className="text-foreground font-semibold">4+ years</span> building scalable,
+              <span className="text-foreground font-semibold">5+ years</span> building scalable,
               high-performance applications on{" "}
               <span className="text-foreground font-semibold">React, Next.js, Node.js, TypeScript, & MongoDB</span>.
-              Currently <span className="text-foreground font-semibold">Full stack developer @ Barbarian</span>{" "}
-              leading a team of 4, owning end-to-end delivery and a multi-app{" "}
-              <span className="text-foreground font-semibold">Netlify → Cloudflare</span> migration
-              for <span className="text-foreground font-semibold">AbbVie</span> &{" "}
-              <span className="text-foreground font-semibold">Lead the frontend part for Citizen Watch</span>.
+              Currently <span className="text-foreground font-semibold">Software Engineer @ Barbarian</span>{" "}
+              for client <span className="text-foreground font-semibold">Samsung</span>, and building
+              agentic-AI tooling — a{" "}
+              <span className="text-foreground font-semibold">Claude Code + Figma MCP</span> pipeline
+              that turns Figma designs into production AEM EDS code. Previously led a team of 4 on{" "}
+              <span className="text-foreground font-semibold">AbbVie</span>&apos;s Netlify → Cloudflare
+              migration and <span className="text-foreground font-semibold">Citizen Watch</span>&apos;s frontend.
             </motion.p>
 
             <motion.div
@@ -241,7 +259,7 @@ export default function Hero() {
               className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl"
             >
               {[
-                { v: "4+", l: "Years in MERN" },
+                { v: "5+", l: "Years in MERN" },
                 { v: "5+", l: "Apps Migrated" },
                 { v: "4", l: "Devs Led" },
                 { v: "1st", l: "AI Hackathon" },
@@ -291,7 +309,7 @@ export default function Hero() {
                       <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
                         Currently
                       </div>
-                      <div className="text-sm font-semibold">Lead @ Barbarian</div>
+                      <div className="text-sm font-semibold">Software Engineer · Samsung</div>
                     </div>
                     <div className="glass rounded-xl p-2">
                       <Sparkles className="h-4 w-4 text-primary" />
@@ -301,30 +319,23 @@ export default function Hero() {
               </div>
 
               {/* Floating tech badges */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 6, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-                className="absolute -left-6 top-10 glass rounded-2xl px-3 py-2 shadow-xl hidden sm:flex items-center gap-2"
-              >
-                <span className="size-2 rounded-full bg-sky-500" />
-                <span className="text-xs font-semibold">React · Next.js</span>
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 7, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-                className="absolute -right-4 top-1/2 glass rounded-2xl px-3 py-2 shadow-xl hidden sm:flex items-center gap-2"
-              >
-                <span className="size-2 rounded-full bg-emerald-500" />
-                <span className="text-xs font-semibold">Node · MongoDB</span>
-              </motion.div>
-              <motion.div
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 5.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
-                className="absolute -left-2 bottom-6 glass rounded-2xl px-3 py-2 shadow-xl hidden sm:flex items-center gap-2"
-              >
-                <span className="size-2 rounded-full bg-violet-500" />
-                <span className="text-xs font-semibold">TypeScript</span>
-              </motion.div>
+              {floatingBadges.map((b) => (
+                <motion.div
+                  key={b.label}
+                  animate={{ y: [0, b.float, 0] }}
+                  transition={{ duration: b.duration, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                  className={`absolute ${b.pos} glass rounded-2xl px-3 py-2 shadow-xl hidden sm:flex items-center gap-2 ${
+                    b.dot ? "" : "ring-1 ring-primary/40"
+                  }`}
+                >
+                  {b.dot ? (
+                    <span className={`size-2 rounded-full ${b.dot}`} />
+                  ) : (
+                    <Sparkles className="h-3.5 w-3.5 text-primary" />
+                  )}
+                  <span className={`text-xs font-semibold ${b.dot ? "" : "text-primary"}`}>{b.label}</span>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </div>

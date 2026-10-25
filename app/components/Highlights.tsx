@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { motion } from "framer-motion"
-import { Cloud, Users, Rocket, Gauge, ArrowUpRight } from "lucide-react"
+import { Bot, Cloud, Users, Rocket, Gauge, ArrowUpRight } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 type Highlight = {
@@ -15,9 +15,23 @@ type Highlight = {
   iconColor: string
   href?: string
   cta?: string
+  wide?: boolean
 }
 
 const highlights: Highlight[] = [
+  {
+    icon: Bot,
+    metric: "14+ blocks",
+    metricLabel: "Figma → AEM EDS",
+    title: "Built an Agentic Design-to-Code Pipeline",
+    desc:
+      "Claude Code + the Figma Dev Mode MCP server read live design files and emit production-ready Adobe Edge Delivery Services code — tokens, CSS/JS, Universal Editor models and JCR content — from a single Figma link, eliminating manual design-to-code translation.",
+    accent: "from-fuchsia-500/25 via-purple-500/15 to-cyan-500/10",
+    iconColor: "text-fuchsia-500",
+    href: "/case-studies/figma-to-eds",
+    cta: "View pipeline case study",
+    wide: true,
+  },
   {
     icon: Cloud,
     metric: "5+ apps",
@@ -33,10 +47,10 @@ const highlights: Highlight[] = [
   {
     icon: Users,
     metric: "4 devs",
-    metricLabel: "Team I lead today",
+    metricLabel: "Team led",
     title: "Lead Frontend @ Barbarian — AbbVie & Citizen Watch",
     desc:
-      "Lead a team of 4 engineers delivering production features for global enterprise clients. Drive code reviews, raise the quality bar with RFCs, and unblock the team so every sprint ships — not accumulates tech debt.",
+      "Led a team of 4 engineers delivering production features for global enterprise clients. Drove code reviews, raised the quality bar with RFCs, and unblocked the team so every sprint shipped — not accumulated tech debt.",
     accent: "from-sky-500/25 via-blue-500/15 to-indigo-500/10",
     iconColor: "text-sky-500",
     href: "/case-studies/citizen-watch",
@@ -95,8 +109,8 @@ export default function Highlights() {
             What I&apos;ve done that <span className="gradient-text">moves the needle</span>
           </h2>
           <p className="section-subtitle">
-            Four impact areas that define how I work — leadership, migrations, production
-            ownership and performance.
+            Five impact areas that define how I work — agentic AI tooling, leadership,
+            migrations, production ownership and performance.
           </p>
         </motion.div>
 
@@ -112,7 +126,9 @@ export default function Highlights() {
               key={h.title}
               variants={item}
               whileHover={{ y: -4 }}
-              className="group relative card-surface overflow-hidden"
+              className={`group relative card-surface overflow-hidden ${
+                h.wide ? "md:col-span-2" : ""
+              }`}
             >
               <div
                 className={`absolute inset-0 bg-gradient-to-br ${h.accent} opacity-60 group-hover:opacity-90 transition-opacity`}

@@ -1,9 +1,9 @@
 
 const siteConfig = {
   name: "Hafeez Shaik",
-  title: "Software Engineer · Full-Stack Developer · Lead Frontend",
+  title: "Software Engineer · Full-Stack Developer · Prompt Engineer",
   description:
-    "Portfolio of Hafeez Shaik — Full-Stack Engineer (MERN) with 4+ years shipping production-grade web applications. Currently Lead Frontend at Barbarian, delivering scalable solutions for AbbVie, Citizen Watch and more.",
+    "Portfolio of Hafeez Shaik — Full-Stack Engineer (MERN) with 5+ years shipping production-grade web applications. Currently Software Engineer at Barbarian for client Samsung, and builder of an agentic Figma → AEM Edge Delivery Services code-generation pipeline. Previously delivered for AbbVie and Citizen Watch.",
   url: "https://hafeezsh.vercel.app",
   ogImage: "/profile.jpg",
   links: {
@@ -23,12 +23,18 @@ export const metadata = {
     "Full-Stack Developer",
     "Lead Frontend Developer",
     "Software Engineer",
+    "Prompt Engineer",
     "MERN Developer",
     "React Developer",
     "Next.js Developer",
     "TypeScript",
     "Node.js",
     "MongoDB",
+    "AEM Edge Delivery Services",
+    "Claude Code",
+    "Model Context Protocol",
+    "AI Agent Orchestration",
+    "Samsung",
     "AbbVie",
     "Citizen Watch",
     "Hyderabad Developer",

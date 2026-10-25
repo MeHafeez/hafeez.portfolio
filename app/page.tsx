@@ -17,10 +17,10 @@ export default function Home() {
       <Hero />
       <Marquee />
       <Highlights />
+      <Skills />
       <About />
       <Experience />
       <Projects />
-      <Skills />
       <Education />
       <Contact />
       <Footer />

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 
 const clients = [
+  "Samsung",
   "AbbVie",
   "Citizen Watch",
   "Astro Malaysia",

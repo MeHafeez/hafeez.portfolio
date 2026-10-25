@@ -11,10 +11,10 @@ import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from "framer-motion"
 
 const menuItems = [
+  { href: "#skills", label: "Skills" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
   { href: "#projects", label: "Projects" },
-  { href: "#skills", label: "Skills" },
   { href: "#education", label: "Education" },
   { href: "#contact", label: "Contact" },
 ]
@@ -75,7 +75,10 @@ export default function Header() {
           </span>
           <span className="hidden sm:flex flex-col leading-tight">
             <span className="text-sm font-semibold">Hafeez Shaik</span>
-            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">Full-Stack Engineer</span>
+            <span className="text-[10px] uppercase tracking-widest text-muted-foreground">
+              {/* " · Prompt" hidden at md, where the desktop nav leaves no room for it */}
+              Full-Stack<span className="md:hidden lg:inline"> · Prompt</span> Engineer
+            </span>
           </span>
         </Link>
 

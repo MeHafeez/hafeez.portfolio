@@ -7,10 +7,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const anchors = [
     { path: "", priority: 1 },
+    { path: "#skills", priority: 0.8 },
     { path: "#about", priority: 0.8 },
     { path: "#experience", priority: 0.8 },
     { path: "#projects", priority: 0.9 },
-    { path: "#skills", priority: 0.8 },
     { path: "#education", priority: 0.7 },
     { path: "#contact", priority: 0.8 },
   ]
